@@ -1,14 +1,20 @@
 import P from 'prop-types';
 import * as Styled from './styles';
+import { Heading } from '../Heading';
 
-export const LogoLink = ({ children }) => {
+export const LogoLink = ({ text, srcImg = '', link }) => {
   return (
-    <Styled.Container>
-      <h1>{children}</h1>
-    </Styled.Container>
+    <Heading size="small" uppercase>
+      <Styled.Container href={link}>
+        {!!srcImg && <img src={srcImg} alt={text} />}
+        {!srcImg && text}
+      </Styled.Container>
+    </Heading>
   );
 };
 
 LogoLink.propTypes = {
-  children: P.node.isRequired,
+  text: P.string.isRequired,
+  srcImg: P.string,
+  link: P.string.isRequired,
 };
