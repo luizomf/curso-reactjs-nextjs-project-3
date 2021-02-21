@@ -1,14 +1,44 @@
 import P from 'prop-types';
-import * as Styled from './styles';
+import { useState } from 'react';
+import { Close as CloseIcon } from '@styled-icons/material-outlined/Close';
+import { Menu as MenuIcon } from '@styled-icons/material-outlined/Menu';
 
-export const Menu = ({ children }) => {
+import * as Styled from './styles';
+import { NavLinks } from '../NavLinks';
+import { LogoLink } from '../LogoLink';
+import { useEffect } from 'react';
+
+export const Menu = ({ links = [], logoData }) => {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (visible) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [visible]);
+
   return (
-    <Styled.Container>
-      <h1>{children}</h1>
-    </Styled.Container>
+    <>
+      <Styled.Button
+        onClick={() => setVisible(true)}
+        aria-label="Open/Close Menu"
+        visible={visible}
+      >
+        {visible ? <CloseIcon /> : <MenuIcon />}
+      </Styled.Button>
+      <Styled.Container visible={visible} aria-hidden={!visible}>
+        <Styled.MenuContainer onClick={() => setVisible(false)}>
+          <LogoLink {...logoData} />
+          <NavLinks links={links} />
+        </Styled.MenuContainer>
+      </Styled.Container>
+    </>
   );
 };
 
 Menu.propTypes = {
-  children: P.node.isRequired,
+  ...NavLinks.propTypes,
+  logoData: P.shape(LogoLink.propTypes),
 };
