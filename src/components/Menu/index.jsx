@@ -9,7 +9,24 @@ import { LogoLink } from '../LogoLink';
 import { useEffect } from 'react';
 
 export const Menu = ({ links = [], logoData }) => {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const [buttonHidden, setButtonHidden] = useState(true);
+
+  useEffect(() => {
+    const windowResizeFn = () => {
+      const { innerWidth } = window;
+
+      if (innerWidth <= 768) {
+        setButtonHidden(false);
+      } else {
+        setButtonHidden(true);
+      }
+    };
+
+    window.addEventListener('resize', windowResizeFn);
+
+    return () => window.removeEventListener('resize', windowResizeFn);
+  }, []);
 
   useEffect(() => {
     const windowResizeFn = (e) => {
@@ -41,8 +58,13 @@ export const Menu = ({ links = [], logoData }) => {
         onClick={() => setVisible(true)}
         aria-label="Open/Close Menu"
         visible={visible}
+        aria-hidden={buttonHidden}
       >
-        {visible ? <CloseIcon /> : <MenuIcon />}
+        {visible ? (
+          <CloseIcon aria-label="Close menu" />
+        ) : (
+          <MenuIcon aria-label="Open menu" />
+        )}
       </Styled.Button>
       <Styled.Container visible={visible} aria-hidden={!visible}>
         <Styled.MenuContainer onClick={() => setVisible(false)}>
