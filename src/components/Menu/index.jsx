@@ -13,19 +13,20 @@ export const Menu = ({ links = [], logoData }) => {
   const [buttonHidden, setButtonHidden] = useState(true);
 
   useEffect(() => {
-    const windowResizeFn = () => {
+    const windowLoadFn = () => {
       const { innerWidth } = window;
 
       if (innerWidth <= 768) {
         setButtonHidden(false);
+        setVisible(false);
       } else {
         setButtonHidden(true);
       }
     };
 
-    window.addEventListener('resize', windowResizeFn);
+    window.addEventListener('load', windowLoadFn);
 
-    return () => window.removeEventListener('resize', windowResizeFn);
+    return () => window.removeEventListener('load', windowLoadFn);
   }, []);
 
   useEffect(() => {
