@@ -12,11 +12,27 @@ export const Menu = ({ links = [], logoData }) => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    const windowResizeFn = (e) => {
+      const { innerWidth } = e.target;
+
+      if (innerWidth <= 768 && visible) {
+        setVisible(false);
+      }
+
+      if (innerWidth > 768 && !visible) {
+        setVisible(true);
+      }
+    };
+
+    window.addEventListener('resize', windowResizeFn);
+
     if (visible) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'auto';
     }
+
+    return () => window.removeEventListener('resize', windowResizeFn);
   }, [visible]);
 
   return (
