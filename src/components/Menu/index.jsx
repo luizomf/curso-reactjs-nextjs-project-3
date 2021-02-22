@@ -21,6 +21,7 @@ export const Menu = ({ links = [], logoData }) => {
         setVisible(false);
       } else {
         setButtonHidden(true);
+        setVisible(true);
       }
     };
 
@@ -35,23 +36,25 @@ export const Menu = ({ links = [], logoData }) => {
 
       if (innerWidth <= 768 && visible) {
         setVisible(false);
+        setButtonHidden(false);
       }
 
       if (innerWidth > 768 && !visible) {
         setVisible(true);
+        setButtonHidden(true);
       }
     };
 
     window.addEventListener('resize', windowResizeFn);
 
-    if (visible) {
+    if (!buttonHidden && visible) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'auto';
     }
 
     return () => window.removeEventListener('resize', windowResizeFn);
-  }, [visible]);
+  }, [visible, buttonHidden]);
 
   return (
     <>
