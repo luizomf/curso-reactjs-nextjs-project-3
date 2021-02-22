@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<GridSection /> should render with background 1`] = `
+exports[`<GridText /> should render with background 1`] = `
 .c4 {
   color: #0A1128;
   font-size: 6.4rem;
@@ -143,7 +143,7 @@ exports[`<GridSection /> should render with background 1`] = `
 </div>
 `;
 
-exports[`<GridSection /> should render without background 1`] = `
+exports[`<GridText /> should render without background 1`] = `
 .c4 {
   color: #0A1128;
   font-size: 6.4rem;
