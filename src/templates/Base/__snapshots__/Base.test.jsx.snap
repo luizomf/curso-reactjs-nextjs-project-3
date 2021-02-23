@@ -5,12 +5,6 @@ exports[`<Base /> should render 1`] = `
   padding-top: 5.4rem;
 }
 
-.c1 {
-  display: inline-block;
-  vertical-align: middle;
-  overflow: hidden;
-}
-
 .c4 {
   max-width: 120rem;
   margin: 0 auto;
@@ -53,13 +47,14 @@ exports[`<Base /> should render 1`] = `
   top: 0;
   left: 0;
   right: 0;
+  width: 100%;
+  border-bottom: #DDDDDD;
+  background: #FFFFFF;
   -webkit-transition: all 300ms ease-in-out;
   transition: all 300ms ease-in-out;
-  background: #FFFFFF;
-  border: 0.1rem solid #DDDDDD;
 }
 
-.c2 .c3 {
+.c2 > .c3 {
   padding-top: 0;
   padding-bottom: 0;
 }
@@ -85,22 +80,40 @@ exports[`<Base /> should render 1`] = `
 }
 
 .c0 {
-  background: #0A1128;
-  color: #FFFFFF;
-  width: 4rem;
-  height: 4rem;
-  position: fixed;
   z-index: 6;
-  border: none;
+  position: fixed;
   top: 2rem;
   right: 2rem;
+  width: 4rem;
+  height: 4rem;
+  background: #0A1128;
+  color: #FFFFFF;
+  border: none;
   display: none;
-  pointer-events: none;
+  pointer-events: all;
 }
 
 .c0 > svg {
   width: 2.5rem;
   height: 2.5rem;
+}
+
+.c8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+}
+
+.c8 > img {
+  max-height: 3rem;
 }
 
 .c9 {
@@ -140,22 +153,10 @@ exports[`<Base /> should render 1`] = `
   width: 50%;
 }
 
-.c8 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  color: inherit;
-}
-
-.c8 > img {
-  max-height: 3rem;
+.c1 {
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
 }
 
 .c16 {
@@ -288,37 +289,38 @@ exports[`<Base /> should render 1`] = `
     height: 100vh;
     visibility: hidden;
     opacity: 0;
-    visibility: visible;
-    opacity: 1;
   }
 
-  .c2 .c3 {
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
+  .c2 > .c3 {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    height: 100vh;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    overflow-y: auto;
+  }
+
+  .c2 .c6 {
+    padding-bottom: 3.2rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
   }
 }
 
 @media (max-width:768px) {
   .c5 {
-    -webkit-flex-flow: column nowrap;
-    -ms-flex-flow: column nowrap;
-    flex-flow: column nowrap;
-    -webkit-box-pack: start;
-    -webkit-justify-content: flex-start;
-    -ms-flex-pack: start;
-    justify-content: flex-start;
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
+    display: block;
     text-align: center;
-    min-height: 100vh;
-    height: 100%;
-    overflow-y: auto;
     padding: 4.8rem 0;
-    cursor: pointer;
   }
 }
 
@@ -358,13 +360,12 @@ exports[`<Base /> should render 1`] = `
 
 <div>
   <button
-    aria-hidden="true"
-    aria-label="Open/Close Menu"
+    aria-label="Open/Close menu"
     class="c0"
   >
     <svg
       aria-hidden="true"
-      aria-label="Close menu"
+      aria-label="Open menu"
       class="c1"
       fill="currentColor"
       focusable="false"
@@ -376,12 +377,11 @@ exports[`<Base /> should render 1`] = `
         fill="none"
       />
       <path
-        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"
+        d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
       />
     </svg>
   </button>
   <div
-    aria-hidden="false"
     class="c2"
   >
     <div
