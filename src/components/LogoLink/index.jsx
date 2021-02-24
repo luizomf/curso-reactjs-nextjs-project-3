@@ -7,6 +7,7 @@ export const LogoLink = ({ text, srcImg = '', link }) => {
   const as = link.match(/^https?:\/\//gi) ? Link : 'a';
   const href = as === 'a' ? { href: link } : { to: link };
 
+  //
   return (
     <Heading size="small" uppercase>
       <Styled.Container {...href} as={as}>
