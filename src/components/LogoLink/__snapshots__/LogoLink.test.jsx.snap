@@ -16,7 +16,7 @@ exports[`<LogoLink /> should match snapshot 1`] = `
 }
 
 .c1 > img {
-  max-height: 3rem;
+  height: 3rem;
 }
 
 .c0 {
