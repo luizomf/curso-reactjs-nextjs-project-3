@@ -4,12 +4,9 @@ import * as Styled from './styles';
 
 export const MenuLink = ({ children, link, newTab = false }) => {
   const target = newTab ? '_blank' : '_self';
-  const as = link.match(/^https?:\/\//gi) ? Link : 'a';
-  const href = as === 'a' ? { href: link } : { to: link };
 
-  //
   return (
-    <Styled.Container {...href} target={target} as={as}>
+    <Styled.Container href={link} target={target}>
       {children}
     </Styled.Container>
   );
