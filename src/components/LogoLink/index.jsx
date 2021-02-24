@@ -1,11 +1,15 @@
 import P from 'prop-types';
 import * as Styled from './styles';
 import { Heading } from '../Heading';
+import { Link } from 'react-router-dom';
 
 export const LogoLink = ({ text, srcImg = '', link }) => {
+  const as = link.match(/^https?:\/\//gi) ? Link : 'a';
+  const href = as === 'a' ? { href: link } : { to: link };
+
   return (
     <Heading size="small" uppercase>
-      <Styled.Container href={link}>
+      <Styled.Container {...href} as={as}>
         {!!srcImg && <img src={srcImg} alt={text} />}
         {!srcImg && text}
       </Styled.Container>
