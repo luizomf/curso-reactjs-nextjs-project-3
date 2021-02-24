@@ -1,4 +1,9 @@
-import { mapSections, mapSectionTwoColumns } from './map-sections';
+import {
+  mapSectionContent,
+  mapSections,
+  mapSectionTwoColumns,
+  mapTextGrid,
+} from './map-sections';
 
 describe('map-sections', () => {
   it('should render predefined section if no data', () => {
@@ -6,7 +11,7 @@ describe('map-sections', () => {
     expect(data).toEqual([]);
   });
 
-  it('should map section two columns', () => {
+  it('should map section two columns if data is empty', () => {
     const data = mapSectionTwoColumns();
     expect(data.background).toBe(false);
     expect(data.component).toBe('');
@@ -16,7 +21,7 @@ describe('map-sections', () => {
     expect(data.title).toBe('');
   });
 
-  it('should map section two columns', () => {
+  it('should map section two columns with data', () => {
     const data = mapSectionTwoColumns({
       __component: 'section.section-two-columns',
       _id: '602fdf2d540c00269e056178',
@@ -62,5 +67,99 @@ describe('map-sections', () => {
     expect(data.srcImg).toBe('a.svg');
     expect(data.text).toBe('abc');
     expect(data.title).toBe('title');
+  });
+
+  it('should map section content with no data', () => {
+    const data = mapSectionContent();
+    expect(data.background).toBe(false);
+    expect(data.component).toBe('');
+    expect(data.sectionId).toBe('');
+    expect(data.title).toBe('');
+    expect(data.html).toBe('');
+  });
+
+  it('should map section content', () => {
+    const data = mapSectionContent({
+      __component: 'section.section-content',
+      _id: '602fdf2d540c00269e056177',
+      title: 'Pricing',
+      content: 'abc',
+      metadata: {
+        background: false,
+        _id: '602fdf2d540c00269e056179',
+        name: 'pricing',
+        section_id: 'pricing',
+        __v: 0,
+        id: '602fdf2d540c00269e056179',
+      },
+      __v: 1,
+      id: '602fdf2d540c00269e056177',
+    });
+    expect(data.background).toBe(false);
+    expect(data.component).toBe('section.section-content');
+    expect(data.sectionId).toBe('pricing');
+    expect(data.title).toBe('Pricing');
+    expect(data.html).toBe('abc');
+  });
+
+  it('should map grid text', () => {
+    const data = mapTextGrid({
+      __component: 'section.section-grid',
+      _id: '602fdf2d540c00269e056174',
+      description: 'abc',
+      title: 'My Grid',
+      text_grid: [
+        {
+          _id: '602fdf2d540c00269e05617c',
+          title: 'Teste 1',
+          description: 'Coisa',
+          __v: 0,
+          id: '602fdf2d540c00269e05617c',
+        },
+        {
+          _id: '602fdf2d540c00269e05617d',
+          title: 'Teste 2',
+          description:
+            'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis cum delectus molestias. Atque doloribus nobis laudantium esse ut, non commodi maxime distinctio veritatis unde, reprehenderit minus ad dolores provident maiores.',
+          __v: 0,
+          id: '602fdf2d540c00269e05617d',
+        },
+        {
+          _id: '602fdf2d540c00269e05617e',
+          title: 'Teste 3',
+          description:
+            'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis cum delectus molestias. Atque doloribus nobis laudantium esse ut, non commodi maxime distinctio veritatis unde, reprehenderit minus ad dolores provident maiores.',
+          __v: 0,
+          id: '602fdf2d540c00269e05617e',
+        },
+      ],
+      image_grid: [],
+      metadata: {
+        background: true,
+        _id: '602fdf2e540c00269e056199',
+        name: 'grid-one',
+        section_id: 'grid-one',
+        __v: 0,
+        id: '602fdf2e540c00269e056199',
+      },
+      __v: 2,
+      id: '602fdf2d540c00269e056174',
+    });
+    expect(data.background).toBe(true);
+    expect(data.component).toBe('section.section-grid');
+    expect(data.sectionId).toBe('grid-one');
+    expect(data.title).toBe('My Grid');
+    expect(data.description).toBe('abc');
+    expect(data.grid[0].title).toBe('Teste 1');
+    expect(data.grid[0].description).toBe('Coisa');
+  });
+
+  it('should map grid text', () => {
+    const data = mapTextGrid(undefined);
+    expect(data.background).toBe(false);
+    expect(data.component).toBe('');
+    expect(data.sectionId).toBe('');
+    expect(data.title).toBe('');
+    expect(data.description).toBe('');
   });
 });
